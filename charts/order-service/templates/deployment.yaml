@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-order-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+      - name: order-service
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          value: "{{ .Values.env.DATABASE_URL }}"
+        - name: KAFKA_BROKER
+          value: "{{ .Values.env.KAFKA_BROKER }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: order-service
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: 3000

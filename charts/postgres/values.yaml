@@ -1,0 +1,10 @@
+image:
+  repository: postgres
+  tag: latest
+  pullPolicy: IfNotPresent
+env:
+  POSTGRES_USER: "user"
+  POSTGRES_PASSWORD: "password"
+  POSTGRES_DB: "order_db"
+service:
+  port: 5432

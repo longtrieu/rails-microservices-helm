@@ -1,0 +1,10 @@
+replicaCount: 2
+image:
+  repository: myrepo/payment-service
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+env:
+  KAFKA_BROKER: "kafka:9092"

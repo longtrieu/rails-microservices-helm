@@ -1,0 +1,8 @@
+replicaCount: 3
+image:
+  repository: confluentinc/cp-zookeeper
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 2181

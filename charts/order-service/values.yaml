@@ -1,0 +1,11 @@
+replicaCount: 2
+image:
+  repository: myrepo/order-service
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+env:
+  DATABASE_URL: "postgres://user:password@postgres:5432/order_db"
+  KAFKA_BROKER: "kafka:9092"

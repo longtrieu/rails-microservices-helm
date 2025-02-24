@@ -1,0 +1,10 @@
+replicaCount: 1
+image:
+  repository: confluentinc/cp-kafka
+  tag: latest
+  pullPolicy: IfNotPresent
+env:
+  KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+  KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+service:
+  port: 9092
